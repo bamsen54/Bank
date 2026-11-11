@@ -1,5 +1,8 @@
 package com.simon.model;
 
+import com.simon.exception.InsufficientFundsException;
+import com.simon.exception.InvalidAmountException;
+
 public class Account {
 
     private Long id;
