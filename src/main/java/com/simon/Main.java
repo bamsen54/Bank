@@ -1,5 +1,7 @@
 package com.simon;
 
+import com.simon.exception.InsufficientFundsException;
+import com.simon.exception.InvalidAmountException;
 import com.simon.model.Account;
 import com.simon.model.Bank;
 
@@ -58,16 +60,30 @@ public class Main {
     }
 
     public static void depositMenu(Account account) {
-        IO.print("Enter deposit amount: ");
-        double amount = scanner.nextDouble();
 
-        double oldBalance = account.getBalance();
-        account.deposit(amount);
+        try {
+            IO.print("Enter deposit amount: ");
+            double amount = scanner.nextDouble();
 
-        IO.println("amount increased from " + oldBalance + " to " + account.getBalance() + "\n");
+            double oldBalance = account.getBalance();
+            account.deposit(amount);
+
+            IO.println("amount increased from " + oldBalance + " to " + account.getBalance() + "\n");
+
+        }
+
+        catch (InputMismatchException e) {
+            IO.println("Enter a double\n");
+        }
+
+        catch (InvalidAmountException e) {
+            IO.println(e.getMessage() + "\n");
+        }
     }
 
     public static void withdrawMenu(Account account) {
+
+        try {
         IO.print("Enter withdraw amount: ");
         double amount = scanner.nextDouble();
 
@@ -75,5 +91,18 @@ public class Main {
         account.withdraw(amount);
 
         IO.println("amount decreased from " + oldBalance + " to " + account.getBalance());
+        }
+
+        catch (InputMismatchException e) {
+            IO.println("Enter a double\n");
+        }
+
+        catch (InvalidAmountException e) {
+            IO.println(e.getMessage() + "\n");
+        }
+
+        catch (InsufficientFundsException e) {
+            IO.println(e.getMessage() + "\n");
+        }
     }
 }
