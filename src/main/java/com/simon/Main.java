@@ -69,7 +69,6 @@ public class Main {
             account.deposit(amount);
 
             IO.println("amount increased from " + oldBalance + " to " + account.getBalance() + "\n");
-
         }
 
         catch (InputMismatchException e) {
@@ -84,14 +83,14 @@ public class Main {
     public static void withdrawMenu(Account account) {
 
         try {
-        IO.print("Enter withdraw amount: ");
-        double amount = scanner.nextDouble();
+            IO.print("Enter withdraw amount: ");
+            double amount = scanner.nextDouble();
 
-        double oldBalance = account.getBalance();
-        account.withdraw(amount);
+            double oldBalance = account.getBalance();
+            account.withdraw(amount);
 
-        IO.println("amount decreased from " + oldBalance + " to " + account.getBalance());
-        }
+            IO.println("amount decreased from " + oldBalance + " to " + account.getBalance());
+            }
 
         catch (InputMismatchException e) {
             IO.println("Enter a double\n");
