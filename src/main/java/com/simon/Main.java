@@ -73,10 +73,12 @@ public class Main {
 
         catch (InputMismatchException e) {
             IO.println("Enter a double\n");
+            scanner.nextLine();
         }
 
         catch (InvalidAmountException e) {
             IO.println(e.getMessage() + "\n");
+            scanner.nextLine();
         }
     }
 
@@ -89,11 +91,12 @@ public class Main {
             double oldBalance = account.getBalance();
             account.withdraw(amount);
 
-            IO.println("amount decreased from " + oldBalance + " to " + account.getBalance());
-            }
+            IO.println("amount decreased from " + oldBalance + " to " + account.getBalance() + "\n");
+        }
 
         catch (InputMismatchException e) {
             IO.println("Enter a double\n");
+            scanner.nextLine();
         }
 
         catch (InvalidAmountException e) {
