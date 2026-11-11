@@ -1,5 +1,8 @@
 package com.simon.model;
 
+import com.simon.exception.InsufficientFundsException;
+import com.simon.exception.InvalidAmountException;
+
 public class Account {
 
     private Long id;
@@ -16,10 +19,22 @@ public class Account {
     }
 
     public void deposit(double amount) {
+
+        if(amount <= 0)
+            throw new InvalidAmountException("amount cannot be negative or zero");
+
         this.balance += amount;
     }
 
     public void withdraw(double amount) {
+
+        if(amount <= 0)
+            throw new InvalidAmountException("amount cannot be negative or zero");
+
+        if(amount > this.balance)
+            throw new InsufficientFundsException("withdrawal failed: Insufficient funds in the account");
+
+
         this.balance -= amount;
     }
 
